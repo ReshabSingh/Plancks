@@ -1,6 +1,7 @@
 // Dropdown button and table element references
 const dropdownButton = document.getElementById('dropdownMenuButton');
 const circuitcomp = document.getElementById('circ-comp');
+const fillTable = document.getElementById('fill-table');
 
 // Map table input IDs to easily update values
 const tableFields = {
@@ -19,21 +20,23 @@ const tableData = {
 };
 
 // Disable dropdown initially
-dropdownButton.disabled = true;
+// dropdownButton.disabled = true;
 
-// Circuit completion click event
-circuitcomp.addEventListener("click", () => {
-  console.log("Circuit completed");
+// // Circuit completion click event
+// circuitcomp.addEventListener("click", () => {
+//   console.log("Circuit completed");
 
-  // Enable the dropdown after circuit is completed
-  dropdownButton.disabled = false;
+//   // Enable the dropdown after circuit is completed
+//   // dropdownButton.disabled = false;
 
-  // Optional: Provide visual feedback (e.g., color change)
-  dropdownButton.classList.remove('btn-secondary');
-  dropdownButton.classList.add('btn-primary');
-});
+//   // Optional: Provide visual feedback (e.g., color change)
+//   dropdownButton.classList.remove('btn-secondary');
+//   dropdownButton.classList.add('btn-primary');
+// });
 
 // Dropdown item click event
+
+
 document.querySelectorAll(".dropdown-item").forEach((item) => {
   item.addEventListener('click', function (event) {
     event.preventDefault(); // Prevent default anchor behavior
@@ -43,9 +46,33 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
     dropdownButton.textContent = selectedColor;
 
     // Update table values based on the selected color
-    updateTableValues(selectedColor);
+    // updateTableValues(selectedColor);
   });
 });
+
+fillTable.addEventListener('click', function (event) {
+
+  event.preventDefault();
+  fillTableValues('Red');
+  fillTableValues('Yellow');
+  fillTableValues('Green');
+  fillTableValues('Blue');
+})
+
+function fillTableValues(color) {
+
+
+  const fields = tableFields[color];
+  const values = tableData[color];
+
+  // Set the first field (LED input value) to the color name
+  document.getElementById(fields[0]).value = color;
+
+  // Loop through the remaining fields and update their values
+  for (let i = 1; i < fields.length; i++) {
+    document.getElementById(fields[i]).value = values[i - 1];
+  }
+}
 
 // Function to update table values dynamically
 function updateTableValues(color) {

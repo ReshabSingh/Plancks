@@ -145,20 +145,13 @@
   function checkbtnPressed(btnNum) {
     btnPressed[btnNum] = true;
     if (btnNum == 0) {
-      document.getElementById("power").textContent = "03.00";
-      document.getElementById("volt").textContent = "00.36";
+      document.getElementById("power").textContent = "05.00";
+      document.getElementById("volt").textContent = "00.00";
       document.getElementById("power-btn").style.strokeWidth = "0%";
     }
     if (btnPressed[0] && btnPressed[1]) {
       
       sessionStorage.setItem("circuitComplete",true)
-  
-      // if(document.querySelector(".forward")){
-      //   // startWorkingForward();
-      // }
-      // else{
-      //   // startWorkingReverse();
-      // }
     }
   }
 

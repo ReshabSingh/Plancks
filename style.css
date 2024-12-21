@@ -117,17 +117,17 @@ th{
 }
 
 .table-input{
-    width: 40%;
+    width: 50%;
 }
 
 .table-input{
-    width: 40%;
+    width: 100%;
 }
 
 .obs{
     background-color: #007bff;
     text-align: center;
-    padding: 1%;
+    /* padding: 1%; */
     margin: 0 0.5%;
 }
 
@@ -141,7 +141,7 @@ th, tr, td, .obs{
 }
 
 tr{
-    height: 5%;
+    height: 10%;
     font-size: 1vw;
 }
 
