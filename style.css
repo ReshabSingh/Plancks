@@ -219,11 +219,19 @@ tr{
 .eight{
     transform-origin: -1009px -105px;
 }
+.nine{
+    transform-origin: -1009px -105px;
+}
+.ten{
+    transform-origin: -1009px -105px;
+}
 .resistor{
     transform-origin: 115px -234px;
 }
 
-.capacitor{
+
+
+.led-whole{
     transform-origin: 540px -270px;
 }
 #g9{
@@ -434,5 +442,20 @@ tr{
   #graphModal.show {
     visibility: visible;
     opacity: 1;
+  }
+  
+
+  .modal {
+    display: none; /* Default hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal.active {
+    display: block; 
   }
   

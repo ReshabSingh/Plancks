@@ -172,6 +172,105 @@ window.addEventListener('click', (event) => {
   }
 });
 
+document.getElementById('closeModal').addEventListener('click', (event) => {
+  event.preventDefault(); // Prevent any default action (e.g., form submission)
+  document.getElementById('graphModal').style.display = 'none'; // Hide the modal
+});
+
 
 // Slope function 
+
+
+// // pdf generation by html2canvas and jsPDF
+
+//   document.getElementById('downloadPdf').addEventListener('click', async () => {
+//     const { jsPDF } = window.jspdf;
+//     const pdf = new jsPDF();
+
+//     // Capture table
+//     const tableElement = document.getElementById('table1');
+//     const tableCanvas = await html2canvas(tableElement);
+//     const tableImgData = tableCanvas.toDataURL('image/png');
+//     pdf.addImage(tableImgData, 'PNG', 10, 10, 190, 0);
+
+//     // Add a page for the modal
+//     pdf.addPage();
+
+//     // Capture modal
+//     const modalElement = document.getElementById('graphModal');
+//     const modalCanvas = await html2canvas(modalElement);
+//     const modalImgData = modalCanvas.toDataURL('image/png');
+//     pdf.addImage(modalImgData, 'PNG', 10, 10, 190, 0);
+
+//     // Save the PDF
+//     pdf.save('Plancks_Constant.pdf');
+//   });
+
+
+  // document.getElementById('downloadPdf').addEventListener('click', async () => {
+  //   const { jsPDF } = window.jspdf;
+  //   const pdf = new jsPDF();
+  
+  //   // Capture table
+  //   const tableElement = document.getElementById('table1');
+  //   const tableCanvas = await html2canvas(tableElement);
+  //   const tableImgData = tableCanvas.toDataURL('image/png');
+  //   pdf.addImage(tableImgData, 'PNG', 10, 10, 190, 0);
+  
+  //   // Add a page for the modal
+  //   pdf.addPage();
+  
+  //   // Ensure the modal is visible before capturing
+  //   const modalElement = document.getElementById('graphModal');
+  //   modalElement.classList.add('active'); // Temporarily show modal
+  //   const modalCanvas = await html2canvas(modalElement);
+  //   const modalImgData = modalCanvas.toDataURL('image/png');
+  //   modalElement.classList.remove('active'); // Hide modal again
+  
+  //   pdf.addImage(modalImgData, 'PNG', 10, 10, 190, 0);
+  
+  //   // Save the PDF
+  //   pdf.save('Plancks_Constant.pdf');
+  // });
+
+  document.getElementById('downloadPdf').addEventListener('click', async () => {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF()
+  
+  
+    // Ensure the modal is visible temporarily for capture
+    const modal = document.getElementById('graphModal');
+    modal.style.display = 'block';
+  
+    // Capture table and modal
+    try {
+      const tableCanvas = await html2canvas(document.getElementById('table1'), {
+        useCORS: true, // Enable CORS
+        allowTaint: false, // Disallow tainting
+      });
+  
+      const tableImgData = tableCanvas.toDataURL('image/png');
+      pdf.addImage(tableImgData, 'PNG', 10, 10, 190, 0);
+  
+      pdf.addPage();
+  
+      const modalCanvas = await html2canvas(modal, {
+        useCORS: true, // Enable CORS
+        allowTaint: false, // Disallow tainting
+      });
+  
+      const modalImgData = modalCanvas.toDataURL('image/png');
+      pdf.addImage(modalImgData, 'PNG', 10, 10, 190, 0);
+  
+      pdf.save('Plancks_Constant.pdf');
+    } catch (error) {
+      console.error('Error capturing canvas:', error);
+      alert('Could not capture content due to tainted canvas issues.');
+    } finally {
+      // Hide modal again after capture
+      modal.style.display = 'none';
+    }
+  });
+  
+
 

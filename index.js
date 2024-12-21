@@ -1,17 +1,16 @@
 
 // 0->one 1->two 2->three 3->four
 
-wireTerminalCheck = [
-    { one: false, resistor: false },
-    { resistor: false, seven: false },
-    { eight: false, four: false },
-    { ten: false, three: false },
-    { five: false, three: false },
-    { seven: false, five: false },
-    { eight: false, resistor: false },
-    { resistor: false, six: false },
-    { two: false, six: false },
-  ];
+// wireTerminalCheck = [
+//     { one: false, resistor: false },
+//     { resistor: false, seven: false },
+//     { eight: false, four: false },
+//     { six:false, four: false},
+//     { seven: false, five: false },
+//     { eight: false, resistor: false },
+//     { resistor: false, six: false },
+//     { two: false, six: false },
+//   ];
   
   terminalMap = {
     0: "one",
@@ -25,7 +24,6 @@ wireTerminalCheck = [
     7: "eight",
     8: "nine",
     9: "ten",
-
   };
   
   var xValues = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360];
@@ -46,7 +44,7 @@ wireTerminalCheck = [
         { one: false, resistor: false },
         { resistor: false, seven: false },
         { eight: false, four: false },
-        { five: false, three: false },
+        { four:false, five: false},
         { seven: false, five: false },
         { eight: false, resistor: false },
         { resistor: false, six: false },
@@ -76,13 +74,15 @@ wireTerminalCheck = [
   
   function trial(componentSom) {
     componentSomMap = terminalMap[componentSom];
+    console.log(componentSomMap, 'componentSomMap');
+    
     for (var key in wireTerminalCheck[sequenceNum])
       if (key == componentSomMap) wireTerminalCheck[sequenceNum][key] = true;
   
     elem = document.getElementsByClassName(componentSomMap)[0];
     elem.style.animationName = "none";
     elem.style.stroke = "none";
-    // console.log(checkPair())
+
     dum = checkPair(sequenceNum);
     // console.log(dum)
     if (dum) {
@@ -161,44 +161,8 @@ wireTerminalCheck = [
       // }
     }
   }
+
   
-  // function keyOp(){
-  //     document.getElementById('key1').style.display = "none"
-  //     document.getElementById('key2').style.animation = "none"
-  //     document.getElementById('key2').onclick = function(){}
-  //     document.getElementById('keyBase2').onclick = function(){}
-  // }
-  
-//   function startWorkingForward() {
-//     let volttext = document.getElementById("volt");
-//     let currtext = document.getElementById("curr");
-//     var srno = 0;
-//     let i = 0;
-  
-//     let volt = 0.0;
-//     let curr = 0.0;
-//     let intervalId = setInterval(() => {
-      
-//       if (volt < 0.4) {
-//         volt += 0.1;
-//         curr = curarr[i++] + getRndInteger(0,0.1);
-//       } else {
-//         volt += 0.05;
-//         curr = curarr[i++] + getRndInteger(0.5, 1.5);
-//       }
-//       volttext.textContent = volt.toFixed(2);
-//       currtext.textContent = curr;
-//       filldata(srno, volt, curr);
-//       srno++;
-//       console.log("fill data callede");
-  
-//       currtext.textContent = curr.toFixed(2);
-//       // Stop the interval after reaching a certain temprature
-//       if (volt >= 0.70) {
-//         clearInterval(intervalId);
-//       }
-//     }, 1000);
-//   }
-  
+
   
   
